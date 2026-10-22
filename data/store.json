@@ -1,0 +1,26 @@
+{
+  "prompts": [
+    {
+      "checkoutRequestId": "ws_CO_221020261618146745117912",
+      "phone": "254745117912",
+      "amount": 400,
+      "status": "pending",
+      "at": 1792675095597
+    },
+    {
+      "checkoutRequestId": "ws_CO_221020261618116745117912",
+      "phone": "254745117912",
+      "amount": 400,
+      "status": "pending",
+      "at": 1792675092583
+    },
+    {
+      "checkoutRequestId": "ws_CO_221020261614311745117912",
+      "phone": "254745117912",
+      "amount": 400,
+      "status": "pending",
+      "at": 1792674872219
+    }
+  ],
+  "withdrawals": []
+}
