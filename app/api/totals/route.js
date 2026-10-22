@@ -4,5 +4,9 @@ import { getSummary } from "@/lib/store";
 export const dynamic = "force-dynamic";
 
 export async function GET() {
-  return NextResponse.json(getSummary());
+  try {
+    return NextResponse.json(await getSummary());
+  } catch (err) {
+    return NextResponse.json({ error: err.message }, { status: 500 });
+  }
 }

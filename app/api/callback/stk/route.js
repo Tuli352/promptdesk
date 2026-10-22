@@ -11,7 +11,7 @@ export async function POST(request) {
   const body = await request.json();
   const cb = body?.Body?.stkCallback;
   if (cb) {
-    updatePrompt(cb.CheckoutRequestID, {
+    await updatePrompt(cb.CheckoutRequestID, {
       status: cb.ResultCode === 0 ? "paid" : "failed",
       resultDesc: cb.ResultDesc,
     });

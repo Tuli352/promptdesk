@@ -25,6 +25,7 @@ Next.js (App Router) and React app that sends M-Pesa STK push prompts, withdraws
 
 - Test in the sandbox first (`MPESA_ENV=sandbox`). Going live needs a paybill or till, B2C enabled on your shortcode, and a funded B2C utility account. Withdrawals pay out of that account, so the money collected through STK push must be moved to it by your M-Pesa setup.
 - "Total prompted" is every amount you asked for. "Paid so far" only counts prompts the customer actually confirmed.
-- `lib/store.js` writes to `data/store.json`. That works on your own computer or a VPS. Vercel and other serverless hosts need a real database instead.
+- `lib/store.js` uses Upstash Redis when `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` (or Vercel's `KV_REST_API_URL` and `KV_REST_API_TOKEN`) are set, and a local `data/store.json` file otherwise. Vercel cannot write files, so deploy there with a Redis store connected.
+- On Vercel, add every variable from `.env.local` in Project Settings, Environment Variables, and set `APP_BASE_URL` to your deployed https address.
 - This page has no login. Add authentication before putting it on the internet, or anyone who finds the URL can send prompts and withdraw.
 - Check Safaricom's current Daraja docs for the B2C endpoint version and field names before going live.

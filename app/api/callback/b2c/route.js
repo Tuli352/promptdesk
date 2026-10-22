@@ -11,7 +11,7 @@ export async function POST(request) {
   const body = await request.json();
   const result = body?.Result;
   if (result) {
-    updateWithdrawal(result.OriginatorConversationID, {
+    await updateWithdrawal(result.OriginatorConversationID, {
       status: result.ResultCode === 0 ? "sent" : "failed",
       resultDesc: result.ResultDesc,
     });

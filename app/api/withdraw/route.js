@@ -12,7 +12,7 @@ export async function POST(request) {
     return NextResponse.json({ error: "Amount must be a whole number from 1 to 250,000." }, { status: 400 });
   }
 
-  const { available } = getSummary();
+  const { available } = await getSummary();
   if (amt > available) {
     return NextResponse.json(
       { error: `You can withdraw at most KES ${available.toLocaleString("en-KE")} right now.` },
@@ -22,7 +22,7 @@ export async function POST(request) {
 
   try {
     const { originatorId } = await b2cWithdraw({ phone: msisdn, amount: amt });
-    addWithdrawal({ originatorId, phone: msisdn, amount: amt });
+    await addWithdrawal({ originatorId, phone: msisdn, amount: amt });
     return NextResponse.json({ ok: true });
   } catch (err) {
     return NextResponse.json({ error: err.message }, { status: 502 });

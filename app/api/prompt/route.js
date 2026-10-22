@@ -14,7 +14,7 @@ export async function POST(request) {
 
   try {
     const { checkoutRequestId } = await stkPush({ phone: msisdn, amount: amt });
-    addPrompt({ checkoutRequestId, phone: msisdn, amount: amt });
+    await addPrompt({ checkoutRequestId, phone: msisdn, amount: amt });
     return NextResponse.json({ ok: true });
   } catch (err) {
     return NextResponse.json({ error: err.message }, { status: 502 });
